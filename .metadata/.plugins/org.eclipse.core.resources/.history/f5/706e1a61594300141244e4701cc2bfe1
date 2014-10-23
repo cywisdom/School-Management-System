@@ -1,0 +1,368 @@
+package abc;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.sql.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
+
+
+public class Phonebook extends JFrame {
+	private static JTextField txtname;
+	private static JTextField txtphone;
+	private static Connection conn;
+	private static Statement stmt;
+	private  ResultSet rs,rs1;
+	
+	
+	public void showField() {
+		try{
+			
+		txtname.setText(rs.getString("fName"));
+		txtphone.setText(rs.getString("Phonenumber"));
+		
+		}
+		catch(SQLException squl)
+		{
+			
+		}
+		
+	}		
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Phonebook frame = new Phonebook();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+			
+			}
+
+	
+		
+});
+		}
+
+		public Phonebook() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 535, 300);
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Phonebook", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
+		panel.setBounds(10, 11, 499, 240);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Name");
+		lblNewLabel.setBounds(75, 39, 55, 14);
+		panel.add(lblNewLabel);
+		
+		txtname = new JTextField();
+		txtname.setBounds(146, 36, 139, 20);
+		panel.add(txtname);
+		txtname.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Phone");
+		lblNewLabel_1.setBounds(75, 80, 80, 14);
+		panel.add(lblNewLabel_1);
+		
+		txtphone = new JTextField();
+		txtphone.setBounds(146, 77, 143, 20);
+		panel.add(txtphone);
+		
+		
+		try{
+			
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			String url="jdbc.mysql://localhost/test";
+			conn= DriverManager.getConnection(url,"root","password");
+			//for ACCESS
+			JOptionPane.showMessageDialog(null, "a");
+			
+			
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs=stmt.executeQuery("select * from phonebook");
+			/*while(rs.next())
+			{
+				System.out.println(rs.getString("Name"));
+			}
+			if(rs.next())
+			{
+				showField();
+			}*/
+			
+		}
+		catch(SQLException sqle) {
+			System.out.println("sqle: not connected" + sqle.toString());
+			}
+		catch(Exception e) {
+			System.out.println("e: not connected"+e.getMessage());
+		//	e.printStackTrace();
+			}
+		
+		JButton btnnext = new JButton("Next>>");
+		btnnext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					
+				
+				if(rs.next())
+				{
+					showField();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"Last Record");
+					if(rs.last())
+						showField();
+				}
+				}
+				catch(Exception E)
+				{
+					System.out.println("exeption is :"+E);
+					E.printStackTrace();
+				}
+			}
+		});
+		btnnext.setBounds(345, 35, 89, 23);
+		panel.add(btnnext);
+				JButton btnprevious = new JButton("<<Previous");
+		btnprevious.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+				{
+					if(rs.previous())
+					{
+						showField();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null,"First Record");
+						if(rs.first())
+						
+						showField();
+						
+					}
+				}
+				catch(Exception e1)
+				{
+					System.out.println("Excepion isssssssss in previous"+e1);
+				}
+
+				
+				
+				
+			}
+		});
+		btnprevious.setBounds(345, 76, 89, 23);
+		panel.add(btnprevious);
+		
+		JButton btnfind = new JButton("Find");
+		btnfind.addActionListener(new ActionListener() {
+			private boolean flag;
+
+			public void actionPerformed(ActionEvent e) {
+				try{
+				
+				rs.first();
+				
+			
+				if(txtname.getText().isEmpty())
+				{
+					
+					do {JOptionPane.showMessageDialog(null,"in method");
+						
+							if(txtphone.getText() == rs.getString(3)) 
+							{
+								JOptionPane.showMessageDialog(null,"Record match");
+								rs.absolute(rs.getRow());
+								showField();
+								flag = true;
+							}
+						
+						}
+					while(flag == false && rs.next());
+				}
+				else if(txtphone.getText().isEmpty())
+				{
+					String s = txtname.getText();
+					rs1=stmt.executeQuery("select * from phonebook where Name='"+s+"'");
+					//system.out.println(":"+rs1.getString(3));
+					
+				
+					
+					ResultSetMetaData md = rs1.getMetaData();
+					
+					while(rs1.next()){
+					for(int i=1;i<=md.getColumnCount();i++)
+					{
+						System.out.println(md.getColumnName(i));
+						System.out.println(":"+rs1.getString(i));
+						
+					}
+				
+					}
+					
+							
+					
+					
+					/*.first();
+					while(flag == false && (rs.next())){
+
+					JOptionPane.showMessageDialog(null,"in method");
+						System.out.println(rs.getString(2));
+						
+						if(txtname.getText() == rs.getString(2)) 
+						{	JOptionPane.showMessageDialog(null,"Record match");
+							rs.absolute(rs.getRow());
+							showField();
+							flag = true;
+						}
+					
+					}*/
+									
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"There is no Record");
+					txtname.setText("");
+					txtphone.setText("");
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				}
+				catch(Exception E)
+				{
+					E.printStackTrace();
+					
+				}
+				
+				
+				
+				
+				/*	
+				int id = Integer.parseInt(textSearch.getText());
+				boolean flag = false;
+				
+				
+				
+				if(flag == false) 
+				{
+					rs.absolute(currPos);
+				}
+				
+				
+			}*/
+			}});
+		btnfind.setBounds(214, 193, 89, 23);
+		panel.add(btnfind);
+		
+		JButton btnadd = new JButton("Add");
+		btnadd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs.moveToInsertRow();
+					rs.updateString(2,txtname.getText());
+					rs.updateString(3,txtphone.getText());
+					rs.insertRow();
+					JOptionPane.showMessageDialog(null,"Add record Successfully");
+					txtname.setText("");
+					txtphone.setText("");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnadd.setBounds(115, 145, 89, 23);
+		panel.add(btnadd);
+		
+		JButton btndelete = new JButton("Delete");
+		btndelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					rs = stmt.executeQuery("Select * from phonebook");
+					if(rs.next())
+					{
+						
+						rs.deleteRow();
+						JOptionPane.showMessageDialog(null, "Delete successfully");
+						txtname.setText("");
+						txtphone.setText("");
+					}
+					else if(rs.last())
+					{
+						rs.deleteRow();
+						JOptionPane.showMessageDialog(null, "Delete successfully");
+						txtname.setText("");
+						txtphone.setText("");
+					}
+					else if(rs.first())
+					{
+						rs.deleteRow();
+						JOptionPane.showMessageDialog(null, "Delete successfully");
+						txtname.setText("");
+						txtphone.setText("");}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "There is no Record in Database");
+						txtname.setText("");
+						txtphone.setText("");
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btndelete.setBounds(214, 145, 89, 23);
+		panel.add(btndelete);
+		
+		JButton btnupdate = new JButton("Update");
+		btnupdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs.updateString(2,txtname.getText());
+					rs.updateString(3, txtphone.getText());
+					rs.updateRow();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnupdate.setBounds(115, 193, 89, 23);
+		panel.add(btnupdate);
+		
+		//txt.setColumns(10);
+	}
+}

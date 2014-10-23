@@ -1,0 +1,104 @@
+/* CSS Document */
+
+
+.button_example{
+border:1px solid #d7dada; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; text-align: center; color: #FFFFFF; background-color: #f4f5f5;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(#f4f5f5), to(#dfdddd));
+ background-image: -webkit-linear-gradient(top, #f4f5f5, #dfdddd);
+ background-image: -moz-linear-gradient(top, #f4f5f5, #dfdddd);
+ background-image: -ms-linear-gradient(top, #f4f5f5, #dfdddd);
+ background-image: -o-linear-gradient(top, #f4f5f5, #dfdddd);
+ background-image: linear-gradient(to bottom, #f4f5f5, #dfdddd);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f5f5, endColorstr=#dfdddd);
+}
+
+.button_example:hover{
+ border:1px solid #bfc4c4; background-color: #d9dddd;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(#d9dddd), top(#c6c3c3));
+ background-image: -webkit-linear-gradient(top, #d9dddd, #c6c3c3);
+ background-image: -moz-linear-gradient(top, #d9dddd, #c6c3c3);
+ background-image: -ms-linear-gradient(top, #d9dddd, #c6c3c3);
+ background-image: -o-linear-gradient(top, #d9dddd, #c6c3c3);
+ background-image: linear-gradient(to bottom, #d9dddd, #c6c3c3);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#d9dddd, endColorstr=#c6c3c3);
+}
+
+
+textarea {
+     resize: none;
+     }
+
+body td
+{
+	font-family:Tahoma;
+	font-size:13px;
+}
+
+
+
+input[type="file"].hide
+{
+display:none;
+}
+
+input[type="submit"].hide
+{
+display:none;
+}
+
+
+textarea, select,input{
+    
+    padding: 5px;   
+    border: 1px solid #DDDDDD;
+    
+    /*Applying CSS3 gradient*/
+    background: -moz-linear-gradient(center top , #FFFFFF,  #EEEEEE 1px, #FFFFFF 20px);    
+    background: -webkit-gradient(linear, left top, left 20, from(#FFFFFF), color-stop(5%, #EEEEEE) to(#FFFFFF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBFBFB', endColorstr='#FFFFFF');
+    
+    /*Applying CSS 3radius*/   
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    
+    /*Applying CSS3 box shadow*/
+    -moz-box-shadow: 0 0 2px #DDDDDD;
+    -webkit-box-shadow: 0 0 2px #DDDDDD;
+    box-shadow: 0 0 2px #DDDDDD;
+
+}
+textarea:hover,  select:hover,input:hover
+{
+    border:1px solid #cccccc;
+}
+textarea:focus, select:focus, input:focus
+{	outline-color:#99cc66;
+    box-shadow:0 0 2px #FFFE00;
+}
+h1
+{
+font-family:"Californian FB";
+font-size:xx-large;
+font-style:normal;
+color:#99cc66;
+
+}
+
+.shadow-div 
+{
+    border: 4px solid #fff;
+			margin: 100px;
+			padding: 10px 20px;
+			overflow: hidden;
+			
+
+			  background-image: -moz-linear-gradient(top, #f6f2ec, #e2dbce); /* FF3.6 */
+			  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f6f2ec),color-stop(1, #e2dbce)); /* Saf4+, Chrome */
+			            filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#f6f2ec', EndColorStr='#e2dbce'); /* IE6,IE7 */
+			        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#f6f2ec', EndColorStr='#e2dbce')"; /* IE8 */
+		
+			     -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.35), 0 0 180px 0 #fff, 0 12px 8px -5px rgba(0, 0, 0, 0.85); /* FF3.5+ */
+			  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.35), 0 0 810px -68px #fff, 0 12px 8px -5px rgba(0, 0, 0, 0.65); /* Saf3.0+, Chrome */
+			          box-shadow: 0 0 2px rgba(0, 0, 0, 0.35), 0 0 180px 0 #fff, 0 12px 8px -5px rgba(0, 0, 0, 0.85); /* Opera 10.5, IE 9.0 */
+
+
+}

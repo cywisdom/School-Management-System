@@ -1,0 +1,10 @@
+package part1;
+
+import java.awt.Frame;
+
+public class GuessingGameGUI extends Frame{
+
+		public GuessingGameGUI(){
+						
+		}
+}

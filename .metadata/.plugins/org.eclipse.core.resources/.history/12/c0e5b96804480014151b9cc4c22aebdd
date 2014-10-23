@@ -1,0 +1,11 @@
+package part1;
+
+import java.awt.Frame;
+
+public class GuessingGameGUI extends Frame{
+
+		public GuessingGameGUI(){
+			setSize(600, 400);			
+			setVisible(true);
+		}
+}

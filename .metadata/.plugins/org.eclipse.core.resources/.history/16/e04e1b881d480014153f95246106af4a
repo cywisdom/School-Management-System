@@ -1,0 +1,12 @@
+package ListenMusic;
+
+import javax.swing.JFileChooser;
+
+public class PlayMusic {
+	
+	public PlayMusic(){
+		
+	
+	}
+	
+}

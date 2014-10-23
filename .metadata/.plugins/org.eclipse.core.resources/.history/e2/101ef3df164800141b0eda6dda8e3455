@@ -1,0 +1,16 @@
+package ListenMusic;
+
+import java.awt.Frame;
+import java.io.*;
+
+
+public class MainTestPlayMusic {
+	
+	public static void main(String[] args){
+		
+		InputStream in = new FileInputStream(new File(filename));
+        AudioStream audioStream = new AudioStream(in);
+        AudioPlayer.player.start(audioStream);
+		
+	}
+}

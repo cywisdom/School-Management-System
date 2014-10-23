@@ -1,0 +1,45 @@
+package ListenMusic;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.swing.JFileChooser;
+ 
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
+public class MainTestPlayMusic {
+	
+	public static void main(String[] args) throws IOException{
+		File selectedFile = null;
+		JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+          selectedFile = fileChooser.getSelectedFile();
+          System.out.println(selectedFile.getName());
+        }
+		 
+        AudioPlayer player = AudioPlayer.player;
+        AudioStream stream;
+        AudioData data;
+        ContinuousAudioDataStream loop = null;
+        InputStream input = null;
+        try
+        {
+            input = new FileInputStream("GarageBand.mp3");
+            stream = new AudioStream(input);
+            data = stream.getData();
+            loop = new ContinuousAudioDataStream(data);
+            player.start(loop);
+        }
+        catch(IOException err)
+        {
+               System.out.println("fle not found");
+        }
+		
+	}
+}

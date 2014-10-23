@@ -1,0 +1,78 @@
+package abc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import sun.jdbc.odbc.JdbcOdbcDriver;
+
+public class Phonebook {
+
+	public static void main(String[] args) {
+			phonebookGUI obj = new phonebookGUI();
+			obj.setVisible(true);
+	}
+	
+    public Connection createConnection(String url, String user, String password) {
+        Connection con = null;
+        try {
+            new JdbcOdbcDriver();
+            con = DriverManager.getConnection(url, user, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return con;
+    }
+
+    public void createTable(Connection con,String queryString) {
+        try {
+            Statement stmt = con.createStatement();
+              stmt.executeUpdate(queryString);
+            stmt.close(); //option
+           // con.close();	//required to insert last element
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void insertRedord(Connection con,String queryString) {
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(queryString);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void dropTable(Connection con,String queryString) {
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(queryString);
+            stmt.close(); //option
+           // con.close();	//required to insert last element
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet selectQuery(Connection con,String queryString){
+		ResultSet rs = null;
+		try{
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(queryString);
+			//stmt.close();
+
+		}	catch(Exception e){
+			 e.printStackTrace();
+		}
+		return rs;
+	 }
+
+
+}

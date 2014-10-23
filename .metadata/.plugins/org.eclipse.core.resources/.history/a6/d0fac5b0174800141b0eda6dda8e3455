@@ -1,0 +1,23 @@
+package ListenMusic;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.swing.JFileChooser;
+ 
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+public class MainTestPlayMusic {
+	
+	public static void main(String[] args) throws IOException{
+		
+		String soundFile = "C:/Users/KK/Downloads/Music/file.mp3";
+		InputStream in = new FileInputStream(soundFile); 
+        AudioStream audioStream = new AudioStream(in);
+        AudioPlayer.player.start(audioStream);
+		
+	}
+}

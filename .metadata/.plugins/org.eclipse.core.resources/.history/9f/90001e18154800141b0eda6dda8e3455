@@ -1,0 +1,14 @@
+package ListenMusic;
+
+import java.io.*;
+import javax.sound.*;
+import javax.swing.*;
+
+public class PlayMusic extends JFrame {
+   
+   // Constructor
+   public PlayMusic() {
+     
+   }
+}
+ 

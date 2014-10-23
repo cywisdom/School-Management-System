@@ -1,0 +1,14 @@
+package part1;
+
+import java.awt.Frame;
+
+
+public class GuessingGameGUI extends JFrame{
+
+		public GuessingGameGUI(){
+			setSize(600, 400);		
+			setLocationRelativeTo(null);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setVisible(true);
+		}
+}

@@ -1,0 +1,116 @@
+package abc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import sun.jdbc.odbc.JdbcOdbcDriver;
+
+public class phonebookTest {
+
+	String queryString;
+	static ArrayList<String> name = new ArrayList<String>();
+	static ArrayList<Integer> number = new ArrayList<Integer>();
+	
+	public static void main(String[] args) throws SQLException {
+		
+		phonebookTest objTest = new phonebookTest();
+		
+		String dbname = JOptionPane.showInputDialog("Enter Database name:");
+		
+		Connection con = objTest.createConnection(dbname);
+		ResultSet rs = objTest.selectRecord(con);		
+		
+		phonebookGUI obj = new phonebookGUI(con,name,number);
+		obj.setVisible(true);
+
+	}
+
+	public Connection createConnection(String databaseName) {
+
+		String url = "jdbc:odbc:" + databaseName;
+		String user = "";
+		String password = "";
+
+		Connection con = null;
+		try {
+			new JdbcOdbcDriver();
+			con = DriverManager.getConnection(url, user, password);
+			JOptionPane.showMessageDialog(null, "Connected.");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Can't Connect. Run the program again.");
+			System.exit(0);
+		}
+		return con;
+	}
+
+	public ResultSet selectRecord(Connection con) {
+		ResultSet rs = null;
+		queryString = "select * from Phonebook";
+		try {
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery(queryString);
+			while (rs.next()) {
+				String name = rs.getString("name");
+				int value = rs.getInt("number");
+				phonebookTest.name.add(name);
+				phonebookTest.number.add(value);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+
+	}
+
+	public String addRecord(Connection con, String name, int phoneno) {
+		queryString = "INSERT INTO Phonebook VALUES ('" + name + "', "
+				+ phoneno + ")";
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate(queryString);
+			JOptionPane.showMessageDialog(null, "Record Inserted.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String update(Connection con, String newName, int newPhoneno,
+			String name) {
+		queryString = "update phonebook set name='"+newName+"' and number="+newPhoneno+" where name='"+name+"' and number="+newPhoneno+" ";
+		System.out.println(queryString);
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate(queryString);			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public String deleteRecord(Connection con, String name, int phoneno) {
+		queryString = "delete from phonebook where name='"+name+"' and number="+phoneno+"";
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate(queryString);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

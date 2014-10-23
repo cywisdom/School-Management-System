@@ -1,0 +1,6 @@
+package database;
+
+public class testData {
+queryData qd= new queryData();
+
+}

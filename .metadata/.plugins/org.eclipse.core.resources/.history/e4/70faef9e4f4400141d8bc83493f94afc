@@ -1,0 +1,13 @@
+package database;
+
+public class testData {
+	
+	public static void main(String[] args){
+	
+	queryData qd= new queryData();
+	qd.newConnect();
+	qd.Update(con, Query);
+	
+	
+}
+}

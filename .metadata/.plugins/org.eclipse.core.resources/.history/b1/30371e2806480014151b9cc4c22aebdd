@@ -1,0 +1,24 @@
+package part1;
+
+import java.awt.*;
+
+import javax.swing.JFrame;
+
+public class GuessingGameGUI extends JFrame{
+
+		public GuessingGameGUI(){
+			setSize(600, 400);		
+			setLocationRelativeTo(null);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			 GridsCanvas xyz = new GridsCanvas(250, 250, 10, 10);
+			 add(xyz);
+			
+			setVisible(true);
+		}
+		
+		public static void main(String[] args){
+			GuessingGameGUI gui = new GuessingGameGUI();
+			
+		}
+}

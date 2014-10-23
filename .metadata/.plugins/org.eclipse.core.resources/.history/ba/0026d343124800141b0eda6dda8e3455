@@ -1,0 +1,36 @@
+package ListenMusic;
+
+import java.io.*;
+
+import javax.swing.JFileChooser;
+
+import sun.audio.*;
+
+public class PlayMusic {
+	
+	public PlayMusic(){
+		
+		 JFileChooser fileChooser = new JFileChooser();
+	        int returnValue = fileChooser.showOpenDialog(null);
+	        File selectedFile = null;
+	        if (returnValue == JFileChooser.APPROVE_OPTION) {
+	        	selectedFile = fileChooser.getSelectedFile();
+	          System.out.println(selectedFile.getPath());	          
+	        }
+	        
+	       /* AudioInputStream audioIn = AudioSystem.getAudioInputStream(selectedFile);
+	        Clip clip = AudioSystem.getClip(); 
+	        clip.open(audioIn); 
+	        clip.start(); */
+	        
+	        //String gongFile = "/Users/al/DevDaily/Projects/MeditationApp/resources/gong.au";
+	        InputStream in = new FileInputStream(selectedFile.getPath());
+	     
+	        // create an audiostream from the inputstream
+	        AudioStream audioStream = new AudioStream(in);
+	     
+	        // play the audio clip with the audioplayer class
+	        AudioPlayer.player.start(audioStream);
+	}
+	
+}

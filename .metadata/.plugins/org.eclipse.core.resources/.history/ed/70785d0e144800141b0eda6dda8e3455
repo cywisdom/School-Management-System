@@ -1,0 +1,21 @@
+package ListenMusic;
+
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+public class MainTestPlayMusic {
+
+	/**
+	 * @param args
+	 * @throws LineUnavailableException 
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
+	 */
+	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		// TODO Auto-generated method stub
+		PlayMusic obj = new PlayMusic();
+	}
+
+}

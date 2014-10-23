@@ -1,0 +1,92 @@
+package ListenMusic;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.media.*;   // import JMF classes
+import javax.swing.JFileChooser;
+ 
+/**
+*
+* @author BUDDHIMA
+*/
+
+public class PlayMusic {
+ 
+private Player audioPlayer = null;
+ 
+public PlayMusic(URL url) {
+ 
+try {
+ 
+//MediaLocator ml=new MediaLocator(url);
+ 
+audioPlayer = Manager.createPlayer(url);
+ 
+} catch (Exception ex) {
+ 
+System.out.println(ex);
+ 
+}
+ 
+}
+ 
+public AudioPlayer(File file) throws MalformedURLException {
+ 
+this(file.toURI().toURL());
+ 
+}
+ 
+
+public void play() {
+ 
+audioPlayer.start(); // start playing
+ 
+}
+ 
+public void stop() {
+ 
+audioPlayer.stop();  //stop playing
+ 
+audioPlayer.close();
+ 
+}
+ 
+public static void main(String[] args) {
+  
+try {
+ 
+// TODO code application logic here
+ 
+JFileChooser fc = new JFileChooser();
+ 
+fc.showOpenDialog(null);
+ 
+File file = fc.getSelectedFile();
+//FileInputStream fis = new FileInputStream(file);
+//BufferedInputStream bis = new BufferedInputStream(fis);
+
+
+AudioPlayer sap = new AudioPlayer(file);
+ 
+/*int duration = 0;
+
+
+AudioFile audioFile = AudioFileIO.read(file);
+duration = audioFile.getAudioHeader().getTrackLength();
+
+System.out.print("time in milliseconds=   "+duration)  ;*/
+sap.play();
+ 
+//sap.stop();
+ 
+} catch (MalformedURLException ex) {
+ 
+System.out.println(ex);
+ 
+}
+ 
+}
+ 
+}

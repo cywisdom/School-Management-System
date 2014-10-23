@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <context-param>
+    <param-name>filepath</param-name>
+    <param-value>D:/apache-tomcat-7.0.37/webapps/sms/WebContent/users/original images</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>docsuploadpath</param-name>
+    <param-value>D:/apache-tomcat-7.0.37/webapps/sms/WebContent/docs</param-value>
+  </context-param>
+
+<servlet>
+    <servlet-name>FillGradeRp</servlet-name>
+    <servlet-class>org.sms.dao.FillGradeRp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FillGradeRp</servlet-name>
+    <url-pattern>/dao/FillGradeRp</url-pattern>
+  </servlet-mapping>
+
+ <servlet>
+    <servlet-name>ManageExam</servlet-name>
+    <servlet-class>org.sms.dao.ManageExam</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageExam</servlet-name>
+    <url-pattern>/dao/ManageExam</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+    <servlet-name>ManageSchedule</servlet-name>
+    <servlet-class>org.sms.dao.ManageSchedule</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageSchedule</servlet-name>
+    <url-pattern>/dao/ManageSchedule</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>ForgotPass</servlet-name>
+    <servlet-class>org.sms.dao.ForgotPass</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPass</servlet-name>
+    <url-pattern>/dao/ForgotPass</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>ImageUpload</servlet-name>
+    <servlet-class>org.sms.controllers.ImageUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageUpload</servlet-name>
+    <url-pattern>/controllers/ImageUpload</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>FileDownload</servlet-name>
+    <servlet-class>org.sms.controllers.FileDownload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileDownload</servlet-name>
+    <url-pattern>/controllers/FileDownload</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GradeReport</servlet-name>
+    <servlet-class>org.sms.controllers.GradeReport</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GradeReport</servlet-name>
+    <url-pattern>/controllers/GradeReport</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+    <servlet-name>AdminManageSchedule</servlet-name>
+    <servlet-class>org.sms.dao.AdminManageSchedule</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminManageSchedule</servlet-name>
+    <url-pattern>/dao/AdminManageSchedule</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ViewAttendance</servlet-name>
+    <servlet-class>org.sms.controllers.ViewAttendance</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAttendance</servlet-name>
+    <url-pattern>/controllers/ViewAttendance</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>StudentAttendance</servlet-name>
+    <servlet-class>org.sms.controllers.StudentAttendance</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentAttendance</servlet-name>
+    <url-pattern>/controllers/StudentAttendance</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>FillAttendance</servlet-name>
+    <servlet-class>org.sms.controllers.FillAttendance</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FillAttendance</servlet-name>
+    <url-pattern>/controllers/FillAttendance</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>FillAttendanceDao</servlet-name>
+    <servlet-class>org.sms.dao.FillAttendanceDao</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FillAttendanceDao</servlet-name>
+    <url-pattern>/dao/FillAttendanceDao</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AdminAttendance</servlet-name>
+    <servlet-class>org.sms.controllers.AdminAttendance</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAttendance</servlet-name>
+    <url-pattern>/Controllers/AdminAttendance</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ManageClassroom</servlet-name>
+    <servlet-class>org.sms.dao.ManageClassroom</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageClassroom</servlet-name>
+    <url-pattern>/dao/ManageClassroom</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ManageUsers</servlet-name>
+    <servlet-class>org.sms.dao.ManageUsers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageUsers</servlet-name>
+    <url-pattern>/dao/ManageUsers</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ManageSite</servlet-name>
+    <servlet-class>org.sms.dao.ManageSite</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageSite</servlet-name>
+    <url-pattern>/dao/ManageSite</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>ManageCourses</servlet-name>
+    <servlet-class>org.sms.dao.ManageCourses</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageCourses</servlet-name>
+    <url-pattern>/dao/ManageCourses</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ManageStandard</servlet-name>
+    <servlet-class>org.sms.dao.ManageStandard</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageStandard</servlet-name>
+    <url-pattern>/dao/ManageStandard</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ChangePassword</servlet-name>
+    <servlet-class>org.sms.controllers.ChangePassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangePassword</servlet-name>
+    <url-pattern>/controllers/ChangePassword</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>adminSchedule</servlet-name>
+    <servlet-class>org.sms.controllers.adminSchedule</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adminSchedule</servlet-name>
+    <url-pattern>/controllers/adminSchedule</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TeacherRegController</servlet-name>
+    <servlet-class>org.sms.controllers.TeacherRegController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeacherRegController</servlet-name>
+    <url-pattern>/controllers/TeacherRegController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TeacherRegDao</servlet-name>
+    <servlet-class>org.sms.dao.TeacherRegDao</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeacherRegDao</servlet-name>
+    <url-pattern>/dao/TeacherRegDao</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ParentRegController</servlet-name>
+    <servlet-class>org.sms.controllers.ParentRegController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ParentRegController</servlet-name>
+    <url-pattern>/controllers/ParentRegController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ParentRegDao</servlet-name>
+    <servlet-class>org.sms.dao.ParentRegDao</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ParentRegDao</servlet-name>
+    <url-pattern>/dao/ParentRegDao</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StudentRegistrationController</servlet-name>
+    <servlet-class>org.sms.controllers.StudentRegistrationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentRegistrationController</servlet-name>
+    <url-pattern>/controllers/StudentRegistrationController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FileUpload</servlet-name>
+    <servlet-class>org.sms.controllers.FileUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUpload</servlet-name>
+    <url-pattern>/controllers/FileUpload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StudentRegDao</servlet-name>
+    <servlet-class>org.sms.dao.StudentRegDao</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentRegDao</servlet-name>
+    <url-pattern>/dao/StudentRegDao</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EmailController</servlet-name>
+    <servlet-class>org.sms.controllers.EmailController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmailController</servlet-name>
+    <url-pattern>/controllers/EmailController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>loginController</servlet-name>
+    <servlet-class>org.sms.controllers.loginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginController</servlet-name>
+    <url-pattern>/controllers/loginController</url-pattern>
+  </servlet-mapping>
+  
+  
+ 
+  
+</web-app>

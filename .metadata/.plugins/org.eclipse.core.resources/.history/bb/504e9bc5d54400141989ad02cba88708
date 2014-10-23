@@ -1,0 +1,245 @@
+package abc;
+
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.sql.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
+
+public class phonebookGUI extends JFrame {
+	private static JTextField txtname;
+	private static JTextField txtphone;
+
+	int record = 0;
+	ArrayList<String> name = new ArrayList<String>();
+	ArrayList<String> number = new ArrayList<String>();
+	Connection con;
+	phonebookTest objTest = new phonebookTest();
+	
+	public phonebookGUI(Connection con,ArrayList name, ArrayList number) {
+		
+		this.name = name;
+		this.number = number;
+		this.con = con;
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 535, 300);
+		getContentPane().setLayout(null);
+		this.setLocationRelativeTo(null);
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Phonebook",
+		TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
+		panel.setBounds(10, 11, 499, 240);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Name");
+		lblNewLabel.setBounds(75, 39, 55, 14);
+		panel.add(lblNewLabel);
+
+		txtname = new JTextField();
+		txtname.setBounds(146, 36, 139, 20);
+		panel.add(txtname);
+		txtname.setColumns(10);
+
+		JLabel lblNewLabel_1 = new JLabel("Phone");
+		lblNewLabel_1.setBounds(75, 80, 80, 14);
+		panel.add(lblNewLabel_1);
+
+		txtphone = new JTextField();
+		txtphone.setBounds(146, 77, 143, 20);
+		panel.add(txtphone);
+		
+		txtname.setEnabled(false);
+		txtphone.setEnabled(false);
+		
+		JButton btnnext = new JButton("Next>>");
+		btnnext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("Next Pressed");
+				if(record != (phonebookGUI.this.name.size()-1) ){
+					record = record + 1;
+				txtname.setText((String) phonebookGUI.this.name.get(record));
+				txtphone.setText(phonebookGUI.this.number.get(record));
+				
+				}
+			}
+		});
+		btnnext.setBounds(345, 35, 89, 23);
+		panel.add(btnnext);
+		JButton btnprevious = new JButton("<<Previous");
+		btnprevious.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("previous pressed");
+				if(record != 0){
+				record = record - 1;
+				txtname.setText((String) phonebookGUI.this.name.get(record));
+				txtphone.setText(phonebookGUI.this.number.get(record));
+				
+				}
+			}
+		});
+		btnprevious.setBounds(345, 76, 89, 23);
+		panel.add(btnprevious);
+
+		JButton btnfind = new JButton("Find");
+		btnfind.addActionListener(new ActionListener() {
+			private boolean flag;
+
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("Find pressed");
+				final JFrame addFrame = new JFrame("Find record");
+				JPanel pnl = new JPanel(new GridLayout(3,2));
+				addFrame.setLocationRelativeTo(null);
+				addFrame.setSize(400, 150);
+				JLabel lblPhone = new JLabel("Search by:");				
+				
+				final JComboBox cmbSearch = new JComboBox();
+				cmbSearch.addItem("Name");
+				cmbSearch.addItem("Number");
+				final JTextField Search = new JTextField();
+				pnl.add(lblPhone);
+				pnl.add(Search);				
+				JButton addbtn = new JButton("Find");
+				JLabel lbl = new JLabel();				
+				pnl.add(lbl);
+				pnl.add(cmbSearch);
+				pnl.add(addbtn);
+				addFrame.add(pnl);
+				addFrame.setVisible(true);
+				addbtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						if(cmbSearch.getSelectedItem().toString().equals("Name") && Search.getText().isEmpty() == false){							
+							int index = phonebookGUI.this.name.indexOf(Search.getText());
+							record = index;
+							addFrame.dispose();
+							txtname.setText(phonebookGUI.this.name.get(record));
+							txtphone.setText(phonebookGUI.this.number.get(index));
+						}
+						else if(cmbSearch.getSelectedItem().toString().equals("Number") && Search.getText().isEmpty() == false){
+							int index = phonebookGUI.this.number.indexOf(Search.getText());
+							record = index;
+							addFrame.dispose();
+							txtname.setText(phonebookGUI.this.name.get(record));
+							txtphone.setText(phonebookGUI.this.number.get(index).toString());
+						}
+						else{
+							JOptionPane.showMessageDialog(null,"No search entered.");							
+						}
+					}
+				});
+				
+			}
+			}
+		);
+		btnfind.setBounds(214, 193, 89, 23);
+		panel.add(btnfind);
+
+		JButton btnadd = new JButton("Add");
+		btnadd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				final JFrame addFrame = new JFrame("Add record");
+				JPanel pnl = new JPanel(new GridLayout(3,2));
+				addFrame.setLocationRelativeTo(null);
+				addFrame.setSize(400, 150);
+				JLabel lblPhone = new JLabel("Phone");				
+				final JTextField phone = new JTextField();
+				 JLabel lblname = new JLabel("Name");
+				 final JTextField name = new JTextField();
+				pnl.add(lblname);
+				pnl.add(name);
+				pnl.add(lblPhone);
+				pnl.add(phone);
+				JButton addbtn = new JButton("Add");
+				JLabel lbl = new JLabel();
+				pnl.add(lbl);
+				pnl.add(addbtn);
+				addFrame.add(pnl);
+				addFrame.setVisible(true);
+				addbtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						//System.out.println("inside add pressed");
+						objTest.addRecord(phonebookGUI.this.con, name.getText(), Integer.parseInt(phone.getText()));
+						addFrame.dispose();							
+					}
+				});
+				
+			}
+		});
+		btnadd.setBounds(115, 145, 89, 23);
+		panel.add(btnadd);
+
+		JButton btndelete = new JButton("Delete");
+		btndelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("Delete Pressed");
+				objTest.deleteRecord(phonebookGUI.this.con, txtname.getText());
+			}
+		});
+		btndelete.setBounds(214, 145, 89, 23);
+		panel.add(btndelete);
+
+		JButton btnupdate = new JButton("Update");
+		btnupdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("update Pressed");
+				JFrame addFrame = new JFrame("Update record");
+				JPanel pnl = new JPanel(new GridLayout(3,2));
+				addFrame.setLocationRelativeTo(null);
+				addFrame.setSize(400, 150);
+				JLabel lblPhone = new JLabel("Phone");				
+				final JTextField phone = new JTextField();
+				JLabel lblname = new JLabel("Name");
+				final JTextField name = new JTextField();
+				pnl.add(lblname);
+				pnl.add(name);
+				pnl.add(lblPhone);
+				pnl.add(phone);
+				JButton addbtn = new JButton("Update");
+				JLabel lbl = new JLabel();
+				pnl.add(lbl);
+				pnl.add(addbtn);
+				addFrame.add(pnl);
+				addFrame.setVisible(true);
+				addbtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						//System.out.println("inside update pressed");
+						objTest.update(phonebookGUI.this.con, name.getText(), Integer.parseInt(phone.getText()), phonebookGUI.this.name.get(record));
+					}
+				});
+				
+			
+			}
+		});
+		btnupdate.setBounds(115, 193, 89, 23);
+		panel.add(btnupdate);
+
+		
+	}
+
+}

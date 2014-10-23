@@ -1,0 +1,17 @@
+package ListenMusic;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.media.*; // import JMF classes
+import javax.swing.JFileChooser;
+
+/**
+ * 
+ * @author BUDDHIMA
+ */
+
+public class PlayMusic {
+	
+}

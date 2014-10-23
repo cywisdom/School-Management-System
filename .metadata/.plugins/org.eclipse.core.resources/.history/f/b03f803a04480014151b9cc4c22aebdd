@@ -1,0 +1,61 @@
+package part1;
+import java.awt.Toolkit;
+
+import javax.swing.JOptionPane;
+
+public class MainTestGuessingGame {
+
+public static void main(String[] args) {
+	String play = "yes";
+	while(play.equals("yes")){
+	
+	
+String in = JOptionPane.showInputDialog(null,
+"Do you want to play a guessing game?");
+if (in.equals("yes")) {
+GuessingGameGUI gui = new GuessingGameGUI();
+	
+int score = 100;
+int chances = 10;
+
+GuessingGame g = new GuessingGame();
+
+while (chances!=0) {
+int num = Integer.parseInt(JOptionPane.showInputDialog(null,
+"Enter a number"));
+int result = g.checkGuess(num);
+if(result==0){
+Toolkit.getDefaultToolkit().beep();
+JOptionPane.showMessageDialog(null, "CONGRATUALATIONS you have won, your score is "+score+"%");
+Toolkit.getDefaultToolkit().beep();
+
+}
+else{
+chances = chances - 1;
+score = chances * 10;
+if(num < result){
+JOptionPane.showMessageDialog(null, "Inccorect.. your number was less than number seleted by program.. \nChances left = "+chances);
+
+JOptionPane.showMessageDialog(null, "Related score \n: = "+score);
+
+
+}
+else{
+
+JOptionPane.showMessageDialog(null, "Inccorect.. your number was greater than number seleted by program.. \nChances left = "+chances);
+JOptionPane.showMessageDialog(null, "Related score \n = "+score);
+
+}
+}
+}
+} else {
+JOptionPane.showMessageDialog(null, "Game is closed");
+}
+play = JOptionPane.showInputDialog(null,"Play Again?");
+
+}
+
+}
+}
+
+

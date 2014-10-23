@@ -1,0 +1,9 @@
+package ListenMusic;
+
+public class MainTestPlayMusic {
+	
+	public static void main(String[] args) throws IOException{
+	
+		PlayMusic obj = new PlayMusic();
+	}
+}

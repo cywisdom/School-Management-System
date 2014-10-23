@@ -1,0 +1,25 @@
+package database;
+
+import java.sql.*;
+
+public class queryData {
+
+	Connection con;
+
+	public Connection newConnect() {
+
+		String url = "jdbc:mysql//localhost:3306/school";
+		String userName = "root";
+		String password = "admin";
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			con=DriverManager.getConnection(url, userName, password);
+			System.out.println("Connected");
+		} catch (Exception e) {
+			System.out.println("Error");
+
+		}
+ return con;
+	}
+}

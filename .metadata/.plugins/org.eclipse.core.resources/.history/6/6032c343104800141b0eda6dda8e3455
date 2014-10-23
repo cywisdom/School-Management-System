@@ -1,0 +1,13 @@
+package ListenMusic;
+
+public class MainTestPlayMusic {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		PlayMusic obj = new PlayMusic();
+	}
+
+}
